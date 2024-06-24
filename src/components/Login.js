@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -16,7 +16,6 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
 
-  const navigate = useNavigate();
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
@@ -37,7 +36,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -55,8 +53,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          navigate("/browse");
-
+          
           // ...
         })
         .catch((error) => {
@@ -80,7 +77,6 @@ const Login = () => {
         // The signed-in user info.
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
-        navigate("/browse");
         // ...
       })
       .catch((error) => {
